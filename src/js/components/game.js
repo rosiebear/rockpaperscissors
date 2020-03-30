@@ -1,7 +1,10 @@
-import {ToolList} from "./tool-list";
-import {Result} from "./result";
-import {Score} from "./score";
-import {ResetButton} from "./reset-button";
+import { ToolList } from "./tool-list";
+import { Result } from "./result";
+import { Score } from "./score";
+import { ResetButton } from "./reset-button";
+import { Modes } from "./modes";
+import { Heading } from "./heading";
+import { PlayButton } from "./play-button";
 
 const tools = {
 	rock: {
@@ -62,6 +65,15 @@ export const Game = () => {
 		state = handler(state);
 	};
 
+	const toggleMode = () => {
+		const mode = state.mode;
+		setState(() => ({
+			...initialState,
+			mode: mode === modeKeys[0] ? modeKeys[1] : modeKeys[0]
+		}));
+		loadGame();
+	};
+
 	const setResult = () => {
 		const winner = getWinner(state.player1.weapon, state.player2.weapon);
 		setState(state => ({
@@ -84,19 +96,16 @@ export const Game = () => {
 	const play = (toolId) => {
 		const tool1 = getRandomTool();
 		const tool2 = toolId || getRandomTool();
-		//const simulateMode = this.state.mode === modeKeys[1];
 
 		setState(state => ({
 			...state,
 			player1: {
 				...state.player1,
 				weapon: tool1,
-				loading: true,
 			},
 			player2: {
 				...state.player2,
 				weapon: tool2,
-				//...((simulateMode) ? { loading: true } : {}),
 			},
 		}));
 
@@ -111,7 +120,10 @@ export const Game = () => {
 	};
 
 	const renderComponents = () => (`
-		${ToolList({ tools })}
+		${Heading({})}
+		${Modes({label: modes[state.mode].label})}
+		${state.mode === modeKeys[0] ? ToolList({ tools }) : ``}
+		${state.mode === modeKeys[1] ? PlayButton({ winner: state.winner }) : ``}
 	  ${state.winner !== null ? Result({
 		winner: state.winner,
 		player1Label: modes[state.mode].player1Label,
@@ -131,14 +143,27 @@ export const Game = () => {
 			el.addEventListener('click', () => play(el.getAttribute('id')))
 		);
 	};
+
 	const addResetButtonEvent = () => {
 		const el = document.querySelector('#reset');
 		el.addEventListener('click', reset)
 	};
 
+	const addModeButtonEvent = () => {
+		const el = document.querySelector('#mode');
+		el.addEventListener('click', toggleMode)
+	};
+
+	const addPlayButtonEvent = () => {
+		const el = document.querySelector('#play');
+		el.addEventListener('click', () => play())
+	};
+
 	const loadGame = () => {
 		document.querySelector('body').innerHTML = renderComponents();
-		addToolButtonEvents();
+		addModeButtonEvent();
+		state.mode === modeKeys[0] && addToolButtonEvents();
+		state.mode === modeKeys[1] && addPlayButtonEvent();
 	};
 
 	const updateGame = () => {

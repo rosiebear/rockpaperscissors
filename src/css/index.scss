@@ -9,6 +9,11 @@ body {
 		color: white;
 	}
 
+	.heading {
+		margin: 1.5rem auto;
+		text-align: center;
+	}
+
 	.tool-button {
 		$size: 5rem;
 		background-color: #3B3241;
@@ -75,5 +80,36 @@ body {
 	.reset-button {
 		display: flex;
 		margin: 0 auto;
+	}
+
+	.play-button {
+		$size: 5rem;
+		background-color: #3B3241;
+		border: none;
+		border-radius: 50%;
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		height: $size;
+		margin: 2rem auto;
+		width: $size;
+	}
+
+	.modes {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		margin: auto;
+		max-width: 30rem;
+
+		.mode-button {
+			display: flex;
+			margin: 1rem auto;
+		}
+
+		.mode-label {
+			display: flex;
+			margin: 1rem auto;
+		}
 	}
 }
