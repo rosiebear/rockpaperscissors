@@ -1,0 +1,45 @@
+@import './style.css';
+
+body {
+	background-color: green;
+
+	h1 {
+		color: white;
+	}
+
+	.tool-button {
+		$size: 5rem;
+		background-color: #3B3241;
+		border: none;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		height: $size;
+		width: $size;
+		&:active {
+			outline: none;
+			background-color: #4B3F52;
+		}
+		&:focus {
+			box-shadow: 0 0 0 0.125rem #4b3f52;
+			outline: solid transparent;
+			background-color: #4B3F52;
+		}
+	}
+
+	.tool-list {
+		height: 10rem;
+		text-align: center;
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			display: inline-flex;
+			margin: 0 0.5rem;
+		}
+	}
+}
