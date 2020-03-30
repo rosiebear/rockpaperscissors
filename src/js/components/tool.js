@@ -1,5 +1,5 @@
-export const Tool = ({ Icon , handleClick }) => (
-	`<button class="tool-button" onclick=${handleClick}>
+export const Tool = ({ Icon, tool }) => (
+	`<button id="${tool}" class="tool-button">
 			<span>
 				${Icon()}
 			</span>

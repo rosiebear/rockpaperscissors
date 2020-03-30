@@ -1,7 +1,9 @@
 @import './style.css';
 
 body {
+	color: #FFF;
 	background-color: green;
+	font-family: Lato, sans-serif;
 
 	h1 {
 		color: white;
@@ -28,9 +30,10 @@ body {
 	}
 
 	.tool-list {
+		align-items: center;
+		display: flex;
 		height: 10rem;
-		text-align: center;
-
+		justify-content: center;
 		ul {
 			list-style-type: none;
 			margin: 0;
@@ -41,5 +44,36 @@ body {
 			display: inline-flex;
 			margin: 0 0.5rem;
 		}
+	}
+
+	.result {
+		align-items: center;
+		display: flex;
+		height: 5rem;
+		justify-content: center;
+
+		span {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin-bottom: 2.5rem;
+		}
+	}
+
+	.score {
+		align-items: center;
+		display: flex;
+		height: 5rem;
+		margin: auto;
+		max-width: 30rem;
+
+		.score-column {
+			text-align: center;
+			width: 50%;
+		}
+	}
+
+	.reset-button {
+		display: flex;
+		margin: 0 auto;
 	}
 }

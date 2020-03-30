@@ -1,4 +1,4 @@
-import { ToolList } from '../../../src/js/components/tool-list';
+import { ToolList } from '../../src/js/components/tool-list';
 
 const tools = {
 	rock: {
@@ -12,9 +12,9 @@ const tools = {
 	},
 };
 
-describe('ToolList()', () => {
+describe('ToolList', () => {
 	it('should render a Tool component for each tool passed', () => {
-		document.body.innerHTML = ToolList({ tools, handleClick: () => {}});
+		document.body.innerHTML = ToolList({ tools });
 		const els = document.querySelectorAll('li');
 		expect(els.length).toEqual(3);
 	});
